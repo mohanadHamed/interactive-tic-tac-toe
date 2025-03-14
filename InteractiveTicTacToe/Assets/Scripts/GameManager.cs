@@ -8,10 +8,21 @@ public class GameManager : MonoBehaviour
     private const int Columns = 3;
 
     [SerializeField]
+    private int eraseTime = 4;
+
+    [SerializeField]
     private Tile[] tiles;
 
     private TileImage currentImageTurn;
 
+    private float eraseTimer;
+    
+    private bool xStarted;
+    private bool oStarted;
+
+    private Queue<Tile> tileQueue;
+
+    private bool isGameOver;
 
     public void RestartGame()
     {
@@ -28,16 +39,31 @@ public class GameManager : MonoBehaviour
         }
 
         currentImageTurn = TileImage.X;
+        eraseTimer = 0;
+        xStarted = false;
+        oStarted = false;
+        tileQueue = new Queue<Tile>();
     }
     
     private void TileButtonClick(Tile tile)
     {
         tile.TileImage = currentImageTurn;
+        if (!xStarted && currentImageTurn == TileImage.X)
+        {
+            xStarted = true;
+        }
+        if (!oStarted && currentImageTurn == TileImage.O)
+        {
+            oStarted = true;
+        }
+
+        tileQueue.Enqueue(tile);
+
         SwapTurn();
-        CheckGameOver();
+        isGameOver = CheckGameOver();
     }
 
-    private void CheckGameOver()
+    private bool CheckGameOver()
     {
         List<Tile> winningTiles = new List<Tile>();
         for (int row = 0; row < Rows; row++)
@@ -91,10 +117,31 @@ public class GameManager : MonoBehaviour
                 tile.SetInteractable(false);
             }
         }
+
+        return winningTiles.Count > 0;
     }
 
     private void SwapTurn()
     {
         currentImageTurn = currentImageTurn == TileImage.X ? TileImage.O : TileImage.X;
+    }
+
+    private void Update()
+    {
+        if (isGameOver) return;
+
+        if (oStarted && xStarted)
+        {
+            eraseTimer += Time.deltaTime;
+        }
+
+        if (eraseTimer > eraseTime)
+        {
+            eraseTimer = 0;
+            if (tileQueue.Count > 0)
+            {
+                tileQueue.Dequeue().TileImage = TileImage.None;
+            }
+        }
     }
 }
