@@ -8,6 +8,15 @@ public class GameManager : MonoBehaviour
     private const int Columns = 3;
 
     [SerializeField]
+    private AudioClip xAudio;
+
+    [SerializeField]
+    private AudioClip oAudio;
+
+    [SerializeField]
+    private AudioClip winAudio;
+
+    [SerializeField]
     private int eraseTime = 4;
 
     [SerializeField]
@@ -61,6 +70,9 @@ public class GameManager : MonoBehaviour
 
         SwapTurn();
         isGameOver = CheckGameOver();
+
+        var audioClip = isGameOver ? winAudio : (currentImageTurn == TileImage.X ? xAudio : oAudio);
+        GetComponent<AudioSource>().PlayOneShot(audioClip);
     }
 
     private bool CheckGameOver()
@@ -95,7 +107,7 @@ public class GameManager : MonoBehaviour
             && tiles[0].TileImage == tiles[4].TileImage
             && tiles[0].TileImage == tiles[8].TileImage)
         {
-            winningTiles.AddRange(new Tile[] { tiles[0], tiles[5], tiles[8] });
+            winningTiles.AddRange(new Tile[] { tiles[0], tiles[4], tiles[8] });
         }
 
         if (tiles[2].TileImage != TileImage.None
