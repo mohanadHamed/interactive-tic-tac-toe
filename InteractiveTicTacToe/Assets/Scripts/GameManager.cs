@@ -40,12 +40,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < tiles.Length; i++)
-        {
-            Tile tile = tiles[i];
-            tile.TileIndex = i;
-            tile.TileButton.onClick.AddListener(() => TileButtonClick(tile));
-        }
+        AddTileClickListeners();
 
         currentImageTurn = TileImage.X;
         eraseTimer = 0;
@@ -53,10 +48,38 @@ public class GameManager : MonoBehaviour
         oStarted = false;
         tileQueue = new Queue<Tile>();
     }
-    
+
+    private void AddTileClickListeners()
+    {
+        for (int i = 0; i < tiles.Length; i++)
+        {
+            Tile tile = tiles[i];
+            tile.TileIndex = i;
+            tile.TileButton.onClick.AddListener(() => TileButtonClick(tile));
+        }
+    }
+
     private void TileButtonClick(Tile tile)
     {
         tile.TileImage = currentImageTurn;
+        UpdateRoleStartFlags();
+
+        tileQueue.Enqueue(tile);
+
+        SwapTurn();
+        isGameOver = CheckGameOver();
+
+        PlayAudios();
+    }
+
+    private void PlayAudios()
+    {
+        var audioClip = isGameOver ? winAudio : (currentImageTurn == TileImage.X ? xAudio : oAudio);
+        GetComponent<AudioSource>().PlayOneShot(audioClip);
+    }
+
+    private void UpdateRoleStartFlags()
+    {
         if (!xStarted && currentImageTurn == TileImage.X)
         {
             xStarted = true;
@@ -65,45 +88,47 @@ public class GameManager : MonoBehaviour
         {
             oStarted = true;
         }
-
-        tileQueue.Enqueue(tile);
-
-        SwapTurn();
-        isGameOver = CheckGameOver();
-
-        var audioClip = isGameOver ? winAudio : (currentImageTurn == TileImage.X ? xAudio : oAudio);
-        GetComponent<AudioSource>().PlayOneShot(audioClip);
     }
 
     private bool CheckGameOver()
     {
-        List<Tile> winningTiles = new List<Tile>();
-        for (int row = 0; row < Rows; row++)
+        List<Tile> winningTiles = new();
+        CheckWinningHorizontalTiles(winningTiles);
+
+        CheckWinningVerticalTiles(winningTiles);
+
+        CheckWinningDiagonalTiles(winningTiles);
+
+        ColorWinningTiles(winningTiles);
+
+        var isGameOver = winningTiles.Count > 0;
+
+        DimAllGridIfTheGameIsOver(isGameOver);
+
+        return isGameOver;
+    }
+
+    private void DimAllGridIfTheGameIsOver(bool isGameOver)
+    {
+        if (!isGameOver) return;
+
+        foreach (var tile in tiles)
         {
-            var startIndex = row * Columns;
-            
-            if (tiles[startIndex].TileImage == TileImage.None) continue;
-
-            if (tiles[startIndex].TileImage == tiles[startIndex + 1].TileImage 
-                && tiles[startIndex].TileImage == tiles[startIndex + 2].TileImage)
-            {
-                winningTiles.AddRange(new Tile[] { tiles[startIndex], tiles[startIndex + 1], tiles[startIndex + 2] });
-            }
+            tile.SetInteractable(false);
         }
+    }
 
-        for (int col = 0; col < Columns; col++)
+    private static void ColorWinningTiles(List<Tile> winningTiles)
+    {
+        foreach (var winTile in winningTiles)
         {
-            if (tiles[col].TileImage == TileImage.None) continue;
-
-            if (tiles[col].TileImage == tiles[col + Rows].TileImage
-                && tiles[col].TileImage == tiles[col + 2 * Rows].TileImage)
-            {
-                winningTiles.AddRange(new Tile[] { tiles[col], tiles[col + Rows], tiles[col + 2 * Rows] });
-            }
+            winTile.SetGameOverColor();
         }
+    }
 
-        //Check diagonals
-        if (tiles[0].TileImage != TileImage.None 
+    private void CheckWinningDiagonalTiles(List<Tile> winningTiles)
+    {
+        if (tiles[0].TileImage != TileImage.None
             && tiles[0].TileImage == tiles[4].TileImage
             && tiles[0].TileImage == tiles[8].TileImage)
         {
@@ -116,21 +141,36 @@ public class GameManager : MonoBehaviour
         {
             winningTiles.AddRange(new Tile[] { tiles[2], tiles[4], tiles[6] });
         }
+    }
 
-        foreach (var winTile in winningTiles)
+    private void CheckWinningVerticalTiles(List<Tile> winningTiles)
+    {
+        for (int col = 0; col < Columns; col++)
         {
-            winTile.SetGameOverColor();
-        }
+            if (tiles[col].TileImage == TileImage.None) continue;
 
-        if(winningTiles.Count > 0)
-        {
-            foreach(var tile in tiles)
+            if (tiles[col].TileImage == tiles[col + Rows].TileImage
+                && tiles[col].TileImage == tiles[col + 2 * Rows].TileImage)
             {
-                tile.SetInteractable(false);
+                winningTiles.AddRange(new Tile[] { tiles[col], tiles[col + Rows], tiles[col + 2 * Rows] });
             }
         }
+    }
 
-        return winningTiles.Count > 0;
+    private void CheckWinningHorizontalTiles(List<Tile> winningTiles)
+    {
+        for (int row = 0; row < Rows; row++)
+        {
+            var startIndex = row * Columns;
+
+            if (tiles[startIndex].TileImage == TileImage.None) continue;
+
+            if (tiles[startIndex].TileImage == tiles[startIndex + 1].TileImage
+                && tiles[startIndex].TileImage == tiles[startIndex + 2].TileImage)
+            {
+                winningTiles.AddRange(new Tile[] { tiles[startIndex], tiles[startIndex + 1], tiles[startIndex + 2] });
+            }
+        }
     }
 
     private void SwapTurn()
