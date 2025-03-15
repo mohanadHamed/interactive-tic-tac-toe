@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     private AudioClip winAudio;
 
     [SerializeField]
-    private int eraseTime = 4;
+    private int eraseTime = 2;
 
     [SerializeField]
     private Tile[] tiles;
