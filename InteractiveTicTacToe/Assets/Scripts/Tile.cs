@@ -9,6 +9,8 @@ public class Tile : MonoBehaviour
 
     public int TileIndex { get; set; }
 
+    public float RemainingTime { get; set; }
+
     private TileImage _tileImage;
 
     [SerializeField]
@@ -28,6 +30,9 @@ public class Tile : MonoBehaviour
     [SerializeField]
     private Color gameOverColor;
 
+    [SerializeField]
+    private Slider slider;
+
     private Dictionary<TileImage, Sprite> spriteMap;
     private Dictionary<TileImage, Color> colorMap;
 
@@ -41,6 +46,7 @@ public class Tile : MonoBehaviour
             image.type = Image.Type.Simple;
             image.preserveAspect = true;
             TileButton.interactable = _tileImage == TileImage.None;
+            RemainingTime = GameManager.Instance.EraseTime;
         } }
 
     public void SetGameOverColor()
@@ -59,6 +65,18 @@ public class Tile : MonoBehaviour
         spriteMap = new() { { TileImage.None, noneSprite }, { TileImage.X, xSprite }, { TileImage.O, oSprite } };
         colorMap = new() { { TileImage.None, noneColor}, { TileImage.X, xColor}, { TileImage.O, oColor } };
         TileImage = TileImage.None;
+    }
+
+    private void Update()
+    {
+        slider.value = RemainingTime / GameManager.Instance.EraseTime;
+
+        slider.gameObject.SetActive(!GameManager.Instance.IsGameOver && _tileImage != TileImage.None && GameManager.Instance.BothPlayersStarted);
+
+        if (slider.gameObject.activeSelf)
+        {
+            RemainingTime -= Time.deltaTime;
+        }
     }
 }
 

@@ -152,7 +152,7 @@ MonoBehaviour:
   xAudio: {fileID: 8300000, guid: ba78ae0bc37115a4faa33144d55e8706, type: 3}
   oAudio: {fileID: 8300000, guid: c90fac441c86aef4c9b4a8eaddf66ab8, type: 3}
   winAudio: {fileID: 8300000, guid: 15d1d07f1912eff48953e64ccbcfe343, type: 3}
-  eraseTime: 2
+  eraseTime: 3
   tiles:
   - {fileID: 1015540812}
   - {fileID: 1415379552}
@@ -367,6 +367,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TileButton9
       objectReference: {fileID: 0}
+    - target: {fileID: 6154623269876210643, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165479670537549775, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165479670537549775, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -479,6 +491,18 @@ PrefabInstance:
     - target: {fileID: 5746979826833795122, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
       propertyPath: m_Name
       value: TileButton4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6154623269876210643, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165479670537549775, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165479670537549775, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -932,6 +956,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TileButton3
       objectReference: {fileID: 0}
+    - target: {fileID: 6154623269876210643, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165479670537549775, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165479670537549775, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1330,6 +1366,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TileButton6
       objectReference: {fileID: 0}
+    - target: {fileID: 6154623269876210643, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165479670537549775, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165479670537549775, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1566,6 +1614,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TileButton2
       objectReference: {fileID: 0}
+    - target: {fileID: 6154623269876210643, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165479670537549775, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165479670537549775, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1678,6 +1738,18 @@ PrefabInstance:
     - target: {fileID: 5746979826833795122, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
       propertyPath: m_Name
       value: TileButton8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6154623269876210643, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165479670537549775, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165479670537549775, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1871,6 +1943,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TileButton5
       objectReference: {fileID: 0}
+    - target: {fileID: 6154623269876210643, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165479670537549775, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165479670537549775, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1984,6 +2068,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TileButton7
       objectReference: {fileID: 0}
+    - target: {fileID: 6154623269876210643, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165479670537549775, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165479670537549775, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2096,6 +2192,18 @@ PrefabInstance:
     - target: {fileID: 5746979826833795122, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
       propertyPath: m_Name
       value: TileButton1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6154623269876210643, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165479670537549775, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165479670537549775, guid: 10fa118c446ea73449151e3eba0474c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

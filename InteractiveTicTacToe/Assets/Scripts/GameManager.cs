@@ -4,6 +4,14 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
+    public float EraseTime => eraseTime;
+
+    public bool BothPlayersStarted => xStarted && oStarted;
+
+    public bool IsGameOver => isGameOver;
+
     private const int Rows = 3;
     private const int Columns = 3;
 
@@ -17,19 +25,15 @@ public class GameManager : MonoBehaviour
     private AudioClip winAudio;
 
     [SerializeField]
-    private int eraseTime = 2;
+    private float eraseTime = 2;
 
     [SerializeField]
     private Tile[] tiles;
 
     private TileImage currentImageTurn;
 
-    private float eraseTimer;
-    
     private bool xStarted;
     private bool oStarted;
-
-    private Queue<Tile> tileQueue;
 
     private bool isGameOver;
 
@@ -38,15 +42,25 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Main");
     }
 
+    private void Awake()
+    {
+        if(Instance == null)
+        { 
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void Start()
     {
         AddTileClickListeners();
 
         currentImageTurn = TileImage.X;
-        eraseTimer = 0;
         xStarted = false;
         oStarted = false;
-        tileQueue = new Queue<Tile>();
     }
 
     private void AddTileClickListeners()
@@ -64,8 +78,8 @@ public class GameManager : MonoBehaviour
         tile.TileImage = currentImageTurn;
         UpdateRoleStartFlags();
 
-        tileQueue.Enqueue(tile);
-
+        tile.RemainingTime = eraseTime;
+        
         SwapTurn();
         isGameOver = CheckGameOver();
 
@@ -182,17 +196,11 @@ public class GameManager : MonoBehaviour
     {
         if (isGameOver) return;
 
-        if (oStarted && xStarted)
+        foreach (var tile in tiles)
         {
-            eraseTimer += Time.deltaTime;
-        }
-
-        if (eraseTimer > eraseTime)
-        {
-            eraseTimer = 0;
-            if (tileQueue.Count > 0)
+            if(tile.RemainingTime <= 0)
             {
-                tileQueue.Dequeue().TileImage = TileImage.None;
+                tile.TileImage = TileImage.None;
             }
         }
     }
