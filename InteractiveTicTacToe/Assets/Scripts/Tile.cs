@@ -73,7 +73,7 @@ public class Tile : MonoBehaviour
 
         slider.gameObject.SetActive(!GameManager.Instance.IsGameOver && _tileImage != TileImage.None && GameManager.Instance.BothPlayersStarted);
 
-        if (slider.gameObject.activeSelf)
+        if (slider.gameObject.activeSelf && _tileImage == GameManager.Instance.CurrentImageTurn)
         {
             RemainingTime -= Time.deltaTime;
         }

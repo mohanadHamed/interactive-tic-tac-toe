@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public bool IsGameOver => isGameOver;
 
+    public TileImage CurrentImageTurn => currentImageTurn;
+
     private const int Rows = 3;
     private const int Columns = 3;
 
